@@ -1,8 +1,5 @@
 FROM jenkins:latest
 
-ENV http_proxy="http://topologia:Philips.2017@proxy.whebdc.com.br:3128"
-ENV https_proxy="http://topologia:Philips.2017@proxy.whebdc.com.br:3128"
-
 USER root
 
 RUN apt-get update
