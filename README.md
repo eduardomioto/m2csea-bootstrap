@@ -2,6 +2,7 @@
 
 #### Execution
 ```
+sudo chmod +x *.sh
 ./stop.sh
 ./install.sh
 ./start.sh

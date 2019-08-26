@@ -1,6 +1,7 @@
 version: '3.2'
 services:
   jenkins:
+    container_name: jenkins
     build:
       context: ./jenkins
     image: 'jenkins/jenkins:lts'
@@ -13,6 +14,7 @@ services:
     volumes:
     - ../volumes/jenkins:/jenkins_config'
   sonarqube:
+    container_name: sonarqube
     image: sonarqube
     ports:
       - '9000:9000'
@@ -26,6 +28,7 @@ services:
       - ../volumes/sonar/extensions:/opt/sonarqube/extensions
       - ../volumes/sonar/plugins:/opt/sonarqube/lib/bundled-plugins
   postgres:
+    container_name: postgres
     image: postgres
     ports:
       - '5432:5432'
@@ -35,6 +38,7 @@ services:
     volumes:
       - ../volumes/postgres:/var/lib/postgresql
   speed-dial:
+    container_name: speed-dial
     build: 
       context: ./speed-dial
     ports:
