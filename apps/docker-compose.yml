@@ -7,15 +7,15 @@ services:
     labels:
       kompose.service.type: nodeport
     ports:
-      - '80:8080'
-      - '443:8443'
+      - '9080:8080'
+      - '9443:8443'
       - '50000:50000'
     volumes:
     - ../volumes/jenkins:/jenkins_config'
   sonarqube:
     image: sonarqube
     ports:
-      - "9000:9000"
+      - '9000:9000'
     environment:
       - sonar.jdbc.username=sonar
       - sonar.jdbc.password=sonar
@@ -27,6 +27,8 @@ services:
       - ../volumes/sonar/plugins:/opt/sonarqube/lib/bundled-plugins
   postgres:
     image: postgres
+    ports:
+      - '5432:5432'
     environment:
       - POSTGRES_USER=sonar
       - POSTGRES_PASSWORD=sonar
@@ -36,7 +38,7 @@ services:
     build: 
       context: ./speed-dial
     ports:
-      - "10000:8080"
+      - '10000:8080'
 networks:
   default:
     external:
