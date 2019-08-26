@@ -1,0 +1,34 @@
+version: '3.2'
+services:
+  jenkins:
+    build:
+      context: ./jenkins
+    image: 'jenkins/jenkins:lts'
+    labels:
+      kompose.service.type: nodeport
+    ports:
+      - '80:8080'
+      - '443:8443'
+      - '50000:50000'
+    volumes:
+    - ../volumes/jenkins:/jenkins_config'
+  sonarqube:
+    image: sonarqube
+    ports:
+      - "9000:9000"
+    environment:
+      - sonar.jdbc.username=sonar
+      - sonar.jdbc.password=sonar
+      - sonar.jdbc.url=jdbc:postgresql://db/sonar
+    volumes:
+      - ../volumes/sonar/conf:/opt/sonarqube/
+      - ../volumes/sonar/data:/opt/sonarqube/data
+      - ../volumes/sonar/extensions:/opt/sonarqube/extensions
+      - ../volumes/sonar/plugins:/opt/sonarqube/lib/bundled-plugins
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+    volumes:
+      - ../volumes/postgres:/var/lib/postgresql
