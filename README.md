@@ -1,1 +1,1 @@
-# mc2pd-bootstrap
+# M2CSEA - Bootstrap Module
