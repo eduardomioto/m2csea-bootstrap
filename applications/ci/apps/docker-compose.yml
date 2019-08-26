@@ -32,3 +32,7 @@ services:
       - POSTGRES_PASSWORD=sonar
     volumes:
       - ../volumes/postgres:/var/lib/postgresql
+networks:
+  default:
+    external:
+      name: ci
