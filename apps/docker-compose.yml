@@ -12,7 +12,8 @@ services:
       - '9443:8443'
       - '50000:50000'
     volumes:
-    - ../volumes/jenkins:/jenkins_config'
+    - ../volumes/jenkins/config:/jenkins_config'
+    - ../volumes/jenkins/home:/var/jenkins_home/
   sonarqube:
     container_name: sonarqube
     image: sonarqube
